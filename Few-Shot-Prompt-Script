@@ -1,0 +1,57 @@
+import json
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+
+# Load patient data from synthdata.json
+with open("synthdata.json", "r") as f:
+    patients = json.load(f)
+
+# Select Patient 1
+patient = next((p for p in patients if p["PatientID"] == 4), None)
+if not patient:
+    raise ValueError("Patient 4 not found in synthdata.json")
+
+# Process medications: split, clean, and standardize to title case
+medications = [med.split(" (")[0].title() for med in patient["Medications"].split("; ")]
+
+# Build strict prompt for tab-separated output
+prompt = f"""
+### Instruction:
+Generate a tab-separated values (TSV) table for a UK clinical audience. The data must be based exclusively on the latest UK BNF and NICE guidelines.
+
+**Drug List:** {'; '.join(medications)}
+
+**Required Columns (5 fields per row):**
+1.  Drug Name (Generic name, BNF-style title case)
+2.  Renal Burden (1 = significant risk in renal impairment; 0 = low/no risk)
+3.  Elderly Risk (1 = high risk/poor tolerance; 0 = low risk)
+4.  BNF Risk Phrase (A direct, succinct quote from the BNF)
+
+**Example of Output Format:**
+Amoxicillin	0	0	Dose adjustment if eGFR less than 30 mL/minute	
+Diazepam	0	1	Caution in elderly: risk of sedation and confusion	
+
+### Response:
+"""
+
+# Load DeepSeek model on CPU
+model_name = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+try:
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name, device_map="cpu")
+    generator = pipeline(
+        "text-generation",
+        model=model,
+        tokenizer=tokenizer,
+    )
+
+    # Run model
+    response = generator(
+        prompt,
+        max_new_tokens=800,
+        temperature=0.0,
+        do_sample=False
+    )
+    output_text = response[0]["generated_text"].replace(prompt, "").strip()
+    print(output_text)
+except Exception as e:
+    print(f"Error running model: {e}")
