@@ -1,0 +1,62 @@
+{
+    "Patient1_Ibuprofen": {
+        "Text": "Patient 1, a 63-year-old male with stroke, hypertension, and coronary heart disease, is prescribed Ibuprofen for chronic pain. Does Ibuprofen pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: BNF advises avoiding NSAIDs in renal impairment"
+    },
+    "Patient1_Paracetamol": {
+        "Text": "Patient 1, a 63-year-old male with stroke and hypertension, is prescribed Paracetamol for pain. Does Paracetamol pose a significant renal burden per BNF?",
+        "Label": 0,
+        "Source": "P4: BNF indicates no renal adjustment needed"
+    },
+    "Patient2_Metformin": {
+        "Text": "Patient 2, a 68-year-old female with CKD (eGFR <30), is prescribed Metformin for type 2 diabetes. Does Metformin pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: prompt_source.txt states 'avoid if eGFR <30'"
+    },
+    "Patient2_Ramipril": {
+        "Text": "Patient 2, a 68-year-old female with CKD (eGFR <30), is prescribed Ramipril for hypertension. Does Ramipril pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: prompt_source.txt states 'max initial dose 2.5 mg if eGFR <40'"
+    },
+    "Patient2_Atorvastatin": {
+        "Text": "Patient 2, a 68-year-old female with CKD, is prescribed Atorvastatin for dyslipidemia. Does Atorvastatin pose a significant renal burden per BNF?",
+        "Label": 0,
+        "Source": "P4: prompt_source.txt indicates max 80 mg if eGFR <30, typically safe"
+    },
+    "Patient3_Furosemide": {
+        "Text": "Patient 3, a 51-year-old female with heart failure and type 2 diabetes, is prescribed Furosemide. Does Furosemide pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: BNF recommends dose adjustment in severe CKD"
+    },
+    "Patient3_Ramipril": {
+        "Text": "Patient 3, a 51-year-old female with heart failure, is prescribed Ramipril for hypertension. Does Ramipril pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: prompt_source.txt states 'max initial dose 2.5 mg if eGFR <40'"
+    },
+    "Patient4_Ibuprofen": {
+        "Text": "Patient 4, a 75-year-old female with hypertension and osteoarthritis, is prescribed Ibuprofen. Does Ibuprofen pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: BNF advises avoiding NSAIDs in renal impairment"
+    },
+    "Patient5_Metformin": {
+        "Text": "Patient 5, an 89-year-old male with type 2 diabetes and heart failure, is prescribed Metformin. Does Metformin pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: prompt_source.txt states 'avoid if eGFR <30' in elderly"
+    },
+    "Patient7_Metformin": {
+        "Text": "Patient 7, a 65-year-old male with COPD and type 2 diabetes, is prescribed Metformin. Does Metformin pose a significant renal burden per BNF?",
+        "Label": 1,
+        "Source": "P4: prompt_source.txt states 'avoid if eGFR <30'"
+    },
+    "Patient8_Amlodipine": {
+        "Text": "Patient 8, a 77-year-old female with coronary heart disease and hypertension, is prescribed Amlodipine. Does Amlodipine pose a significant renal burden per BNF?",
+        "Label": 0,
+        "Source": "P4: prompt_source.txt indicates no significant renal adjustment"
+    },
+    "Patient10_Simvastatin": {
+        "Text": "Patient 10, a 65-year-old male with type 2 diabetes and heart failure, is prescribed Simvastatin. Does Simvastatin pose a significant renal burden per BNF?",
+        "Label": 0,
+        "Source": "P4: prompt_source.txt advises caution but no strict avoidance"
+    }
+}
